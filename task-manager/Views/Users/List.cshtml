@@ -1,0 +1,62 @@
+﻿@model UsersListViewModel;
+@{
+    ViewData["Title"] = "Users";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="my-4">
+    @if (!string.IsNullOrWhiteSpace(Model.Message))
+    {
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            @Model.Message
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <h2 class="fw-bold fs-3 text-center text-primary mb-4">
+        Users List
+    </h2>
+
+    @if (Model.Users is not null && Model.Users.Any())
+    {
+        <form method="post">
+            <div class="table-responsive shadow-sm rounded">
+                <table class="table table-striped table-hover align-middle">
+                    <thead class="table-dark text-center">
+                        <tr>
+                            <th scope="col">Username</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var user in Model.Users)
+                        {
+                            <tr>
+                                <td>@user.UserName</td>
+                                <td>@user.Email</td>
+                                <td class="text-center">
+                                    <div class="btn-group" role="group">
+                                        <button asp-action="MakeAdmin" asp-controller="Users" asp-route-email="@user.Email" class="btn btn-sm btn-outline-primary">
+                                            <i class="bi bi-person-plus"></i> Hacer Admin
+                                        </button>
+                                        <button asp-action="RemoveAdmin" asp-controller="Users" asp-route-email="@user.Email" class="btn btn-sm btn-outline-danger">
+                                            <i class="bi bi-person-dash"></i> Quitar Admin
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </form>
+    }
+    else
+    {
+        <div class="alert alert-warning text-center mt-4" role="alert">
+            No hay usuarios registrados.
+        </div>
+    }
+</div>
+

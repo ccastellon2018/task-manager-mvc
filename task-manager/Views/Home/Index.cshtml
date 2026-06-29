@@ -1,0 +1,17 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization;
+@inject IViewLocalizer localizer;
+@{
+    ViewData["Title"] = "Home Page";
+    string userName = User?.Identity?.Name ?? string.Empty;
+}
+
+<div class="text-center">
+    <h1 class="display-4">@localizer["SaludoMensaje"]</h1>
+    <p>
+        @localizer["AprendeMensaje"]
+    </p>
+</div>
+
+<div>
+    <h3>@(ViewBag.Greeting ?? "Hola"), @userName</h3>
+</div>

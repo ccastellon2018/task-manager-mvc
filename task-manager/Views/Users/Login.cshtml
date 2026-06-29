@@ -1,0 +1,53 @@
+﻿@model LoginViewModel;
+@{
+    ViewData["Title"] = "Login";
+}
+<div class="d-flex justify-content-center align-items-center vh-100">
+    @if (ViewData.Keys.Contains("Message"))
+    {
+        <div class="alert alert-danger" role="alert">
+            @ViewData["Message"]
+        </div>
+    }
+
+
+    <div class="card shadow-lg p-4 bg-dark text-white" style="max-width: 450px; width: 100%;">
+        
+        <h3 class="text-center mb-4">Iniciar Sesión</h3>
+        
+        <div asp-validation-summary="ModelOnly" class="text-center m-2 alert alert-danger"></div>
+        
+        <form method="post">
+            <div class="form-group mb-3">
+                <label asp-for="Email" class="form-label">Correo electrónico</label>
+                <input asp-for="Email" class="form-control" placeholder="ejemplo@correo.com"  autocomplete="off"/>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="PasswordHash" class="form-label">Contraseña</label>
+                <input asp-for="PasswordHash" class="form-control" type="password" placeholder="********" />
+                <span asp-validation-for="PasswordHash" class="text-danger"></span>
+            </div>
+
+            <div class="form-check mb-3">
+                <input asp-for="RememberMe" class="form-check-input" />
+                <label asp-for="RememberMe" class="form-check-label">Recordarme</label>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Ingresar</button>
+        </form>
+
+        <div class="text-center mt-3">
+            <a href="/Account/ForgotPassword" class="text-decoration-none">¿Olvidaste tu contraseña?</a>
+        </div>
+
+        <div class="text-center mt-3">
+            <a asp-action="Register" asp-controller="Users" class="text-decoration-none">¿No tienes cuenta? Registrate</a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
