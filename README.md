@@ -47,7 +47,11 @@ Este proyecto fue desarrollado como parte de mi aprendizaje en el curso del prof
 ## 🛠️ Migraciones con EF Core e Instalaciones de Paquetes
 
 ```
+dotnet add package Microsoft.AspNetCore.Identity.EntityFrameworkCore
+dotnet add package Microsoft.EntityFrameworkCore
 dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add package Microsoft.EntityFrameworkCore.Tools
+dotnet add package Microsoft.EntityFrameworkCore.Desing
 ```
 
 ```
